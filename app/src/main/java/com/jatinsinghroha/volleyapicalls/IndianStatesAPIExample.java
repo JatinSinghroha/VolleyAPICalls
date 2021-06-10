@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class IndianStatesAPIExample extends AppCompatActivity {
 
@@ -30,16 +33,30 @@ public class IndianStatesAPIExample extends AppCompatActivity {
     List<DistrictItem> listOfDistrictItems;
     List<String> listOfDistrictNames;
 
+    RecyclerView mDistrictListRV;
+    RVDistrictsAdapter mRVDistrictsAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_indian_states_apiexample);
+
+        mDistrictListRV = findViewById(R.id.districtsRV);
 
         listOfStateItems = new ArrayList<>();
         listOfStateNames = new ArrayList<>();
 
         listOfDistrictItems = new ArrayList<>();
         listOfDistrictNames = new ArrayList<>();
+
+        mRVDistrictsAdapter = new RVDistrictsAdapter(listOfDistrictItems);
+
+        mDistrictListRV.setAdapter(mRVDistrictsAdapter);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        mDistrictListRV.setLayoutManager(layoutManager);
+
+        mDistrictListRV.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         fetchBtn = findViewById(R.id.fetchBtn);
         indianStatesSpinner = findViewById(R.id.listOfStatesSpinner);
@@ -141,6 +158,8 @@ public class IndianStatesAPIExample extends AppCompatActivity {
         }
 
         listOfDistrictsSpinner.setItems(listOfDistrictNames);
+
+        mRVDistrictsAdapter.notifyDataSetChanged();
     }
 
     /**
