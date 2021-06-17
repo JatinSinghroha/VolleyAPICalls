@@ -16,6 +16,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -33,8 +34,13 @@ public class IndianStatesAPIExample extends AppCompatActivity {
     List<DistrictItem> listOfDistrictItems;
     List<String> listOfDistrictNames;
 
+    List<DistrictWithImageItem> mDistrictWithImageItemList;
+
     RecyclerView mDistrictListRV;
-    RVDistrictsAdapter mRVDistrictsAdapter;
+    RVDistrictsWithImageAdapter mRVDistrictsWithImageAdapter;
+
+    String[] arrayOfImages = {"https://www.outlookindia.com/outlooktraveller/resizer.php?src=https://www.outlookindia.com/outlooktraveller/public/uploads/articles/explore/shutterstock_1135230113.jpg", "https://images.theconversation.com/files/243439/original/file-20181101-83635-1xcrr39.jpg", "https://upload.wikimedia.org/wikipedia/commons/6/66/An_up-close_picture_of_a_curious_male_domestic_shorthair_tabby_cat.jpg", "https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb.jpg"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +55,11 @@ public class IndianStatesAPIExample extends AppCompatActivity {
         listOfDistrictItems = new ArrayList<>();
         listOfDistrictNames = new ArrayList<>();
 
-        mRVDistrictsAdapter = new RVDistrictsAdapter(listOfDistrictItems);
+        mDistrictWithImageItemList = new ArrayList<>();
 
-        mDistrictListRV.setAdapter(mRVDistrictsAdapter);
+        mRVDistrictsWithImageAdapter = new RVDistrictsWithImageAdapter(mDistrictWithImageItemList);
+
+        mDistrictListRV.setAdapter(mRVDistrictsWithImageAdapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         mDistrictListRV.setLayoutManager(layoutManager);
@@ -152,14 +160,21 @@ public class IndianStatesAPIExample extends AppCompatActivity {
 
     private void setUpDistrictsSpinner() {
         listOfDistrictNames.clear();
+        mDistrictWithImageItemList.clear();
 
         for(int i=0; i< listOfDistrictItems.size(); i++){
             listOfDistrictNames.add(listOfDistrictItems.get(i).getDistrict_name());
+
+            mDistrictWithImageItemList.add(new DistrictWithImageItem(
+                  listOfDistrictItems.get(i).getDistrict_id(),
+                  listOfDistrictItems.get(i).getDistrict_name(),
+                  arrayOfImages[new Random().nextInt(arrayOfImages.length)]
+            ));
         }
 
         listOfDistrictsSpinner.setItems(listOfDistrictNames);
 
-        mRVDistrictsAdapter.notifyDataSetChanged();
+        mRVDistrictsWithImageAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -180,7 +195,12 @@ public class IndianStatesAPIExample extends AppCompatActivity {
      * Non-Dangerous Permissions:
      * - Internet
      * - Dial Phone Call
-     * 
+     *
+     * https://images.theconversation.com/files/243439/original/file-20181101-83635-1xcrr39.jpg
+     * https://upload.wikimedia.org/wikipedia/commons/6/66/An_up-close_picture_of_a_curious_male_domestic_shorthair_tabby_cat.jpg
+     * https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb.jpg
+     * https://www.outlookindia.com/outlooktraveller/resizer.php?src=https://www.outlookindia.com/outlooktraveller/public/uploads/articles/explore/shutterstock_1135230113.jpg&w=500&h=400
+     *
      */
 
 }

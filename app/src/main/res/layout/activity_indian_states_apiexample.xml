@@ -11,7 +11,7 @@
         android:id="@+id/listOfStatesSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/_14sdp"
         android:gravity="center"
         android:hint="Choose State/UT"
         android:elevation="16dp"
@@ -65,7 +65,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        tools:listitem="@layout/item_district_rv"
+        tools:listitem="@layout/item_district_image_rv"
         android:id="@+id/districtsRV"
         android:layout_width="match_parent"
         android:layout_margin="16dp"
