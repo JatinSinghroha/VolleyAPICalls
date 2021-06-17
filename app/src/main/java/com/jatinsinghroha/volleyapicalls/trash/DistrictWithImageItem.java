@@ -1,4 +1,4 @@
-package com.jatinsinghroha.volleyapicalls;
+package com.jatinsinghroha.volleyapicalls.trash;
 
 public class DistrictWithImageItem {
 

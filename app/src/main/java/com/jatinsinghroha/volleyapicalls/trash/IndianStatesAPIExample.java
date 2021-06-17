@@ -1,4 +1,4 @@
-package com.jatinsinghroha.volleyapicalls;
+package com.jatinsinghroha.volleyapicalls.trash;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,6 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.jatinsinghroha.volleyapicalls.R;
 import com.skydoves.powerspinner.PowerSpinnerView;
 
 import org.json.JSONArray;

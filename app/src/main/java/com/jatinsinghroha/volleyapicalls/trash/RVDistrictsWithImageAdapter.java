@@ -1,4 +1,4 @@
-package com.jatinsinghroha.volleyapicalls;
+package com.jatinsinghroha.volleyapicalls.trash;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.jatinsinghroha.volleyapicalls.R;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,10 +1,12 @@
-package com.jatinsinghroha.volleyapicalls;
+package com.jatinsinghroha.volleyapicalls.trash;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.jatinsinghroha.volleyapicalls.R;
 
 import org.jetbrains.annotations.NotNull;
 
