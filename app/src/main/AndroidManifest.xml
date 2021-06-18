@@ -9,19 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VolleyAPICalls">
-        <activity android:name=".RecyclerViewBeginnerActivity">
+        <activity android:name=".RecyclerViewWithGlide">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".trash.IndianStatesAPIExample">
+        <activity android:name=".RecyclerViewBeginnerActivity">
 
         </activity>
+        <activity android:name=".trash.IndianStatesAPIExample" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>
