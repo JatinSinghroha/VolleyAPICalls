@@ -18,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RVNameWithImageAdapter extends RecyclerView.Adapter<RVNameWithImageAdapter.ViewHolder> {
 
     List<NameAndImageModel> mNameAndImageModelList;
+    GoToFullAnimalDetails mGoToFullAnimalDetails;
 
-    public RVNameWithImageAdapter(List<NameAndImageModel> nameAndImageModelList){
+    public RVNameWithImageAdapter(List<NameAndImageModel> nameAndImageModelList, GoToFullAnimalDetails goToFullAnimalDetails){
         this.mNameAndImageModelList = nameAndImageModelList;
+        this.mGoToFullAnimalDetails = goToFullAnimalDetails;
     }
 
     @NonNull
@@ -41,6 +43,10 @@ public class RVNameWithImageAdapter extends RecyclerView.Adapter<RVNameWithImage
                 .circleCrop()
                 .placeholder(R.drawable.ic_baseline_download_24)
                 .into(holder.imageOfAnimalIV);
+
+        holder.itemView.setOnClickListener(v -> {
+            mGoToFullAnimalDetails.onAnimalClick(object);
+        });
     }
 
     @Override
@@ -58,5 +64,9 @@ public class RVNameWithImageAdapter extends RecyclerView.Adapter<RVNameWithImage
             nameOfAnimalTV = itemView.findViewById(R.id.animalNameTV);
             imageOfAnimalIV = itemView.findViewById(R.id.imageOfAnimal);
         }
+    }
+
+    interface GoToFullAnimalDetails {
+        void onAnimalClick(NameAndImageModel animalModel);
     }
 }

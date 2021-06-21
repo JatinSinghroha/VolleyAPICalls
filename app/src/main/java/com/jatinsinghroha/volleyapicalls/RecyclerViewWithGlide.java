@@ -1,6 +1,8 @@
 package com.jatinsinghroha.volleyapicalls;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecyclerViewWithGlide extends AppCompatActivity {
+public class RecyclerViewWithGlide extends AppCompatActivity implements RVNameWithImageAdapter.GoToFullAnimalDetails{
 
     RecyclerView nameWithImageRV;
     RVNameWithImageAdapter adapter;
@@ -33,7 +35,7 @@ public class RecyclerViewWithGlide extends AppCompatActivity {
         nameWithImageRV = findViewById(R.id.rvWithGlide);
         mNameAndImageModelList = new ArrayList<>();
 
-        adapter = new RVNameWithImageAdapter(mNameAndImageModelList);
+        adapter = new RVNameWithImageAdapter(mNameAndImageModelList, this);
 
         nameWithImageRV.setAdapter(adapter);
 
@@ -52,5 +54,17 @@ public class RecyclerViewWithGlide extends AppCompatActivity {
             );
         }
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onAnimalClick(NameAndImageModel animalModel) {
+        Toast.makeText(RecyclerViewWithGlide.this, animalModel.getName(), Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(RecyclerViewWithGlide.this, FullScreenAnimalDetails.class);
+
+        intent.putExtra("animalNameKey", animalModel.getName());
+        intent.putExtra("animalImageURLKey", animalModel.getImageURL());
+
+        startActivity(intent);
     }
 }
