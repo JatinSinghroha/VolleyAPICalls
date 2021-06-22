@@ -44,8 +44,13 @@ public class RVNameWithImageAdapter extends RecyclerView.Adapter<RVNameWithImage
                 .placeholder(R.drawable.ic_baseline_download_24)
                 .into(holder.imageOfAnimalIV);
 
-        holder.itemView.setOnClickListener(v -> {
-            mGoToFullAnimalDetails.onAnimalClick(object);
+        holder.nameOfAnimalTV.setOnClickListener(v -> {
+//            mGoToFullAnimalDetails.onAnimalClick(object);
+            mGoToFullAnimalDetails.onItemAdd(position);
+        });
+
+        holder.imageOfAnimalIV.setOnClickListener(v -> {
+            mGoToFullAnimalDetails.onItemDelete(position);
         });
     }
 
@@ -68,5 +73,9 @@ public class RVNameWithImageAdapter extends RecyclerView.Adapter<RVNameWithImage
 
     interface GoToFullAnimalDetails {
         void onAnimalClick(NameAndImageModel animalModel);
+
+        void onItemDelete(int position);
+
+        void onItemAdd(int position);
     }
 }

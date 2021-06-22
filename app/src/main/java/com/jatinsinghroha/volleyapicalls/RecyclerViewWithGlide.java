@@ -67,4 +67,20 @@ public class RecyclerViewWithGlide extends AppCompatActivity implements RVNameWi
 
         startActivity(intent);
     }
+
+    @Override
+    public void onItemDelete(int position) {
+        mNameAndImageModelList.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+    }
+
+    @Override
+    public void onItemAdd(int position) {
+
+        mNameAndImageModelList.add(position+1, mNameAndImageModelList.get(position));
+        adapter.notifyItemInserted(position+1);
+        adapter.notifyItemRangeChanged(position+1, adapter.getItemCount());
+    }
+
 }
