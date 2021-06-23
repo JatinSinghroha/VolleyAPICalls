@@ -36,7 +36,9 @@ public class RVNameWithImageAdapter extends RecyclerView.Adapter<RVNameWithImage
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         NameAndImageModel object = mNameAndImageModelList.get(position);
 
-        holder.nameOfAnimalTV.setText(object.getName());
+        String text = position+1 + ". " +object.getName();
+        holder.nameOfAnimalTV.setText(text);
+
         Glide
                 .with(holder.imageOfAnimalIV)
                 .load(object.getImageURL())
@@ -46,7 +48,12 @@ public class RVNameWithImageAdapter extends RecyclerView.Adapter<RVNameWithImage
 
         holder.nameOfAnimalTV.setOnClickListener(v -> {
 //            mGoToFullAnimalDetails.onAnimalClick(object);
-            mGoToFullAnimalDetails.onItemAdd(position);
+//            mGoToFullAnimalDetails.onItemAdd(position);
+
+            String newText = mGoToFullAnimalDetails.getSquare(Integer.parseInt(holder.nameOfAnimalTV.getText().toString().substring(0, holder.nameOfAnimalTV.getText().toString().indexOf(".")))) + ". " + object.getName();
+
+            holder.nameOfAnimalTV.setText(newText);
+
         });
 
         holder.imageOfAnimalIV.setOnClickListener(v -> {
@@ -77,5 +84,7 @@ public class RVNameWithImageAdapter extends RecyclerView.Adapter<RVNameWithImage
         void onItemDelete(int position);
 
         void onItemAdd(int position);
+
+        int getSquare(int position);
     }
 }

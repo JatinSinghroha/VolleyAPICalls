@@ -83,4 +83,9 @@ public class RecyclerViewWithGlide extends AppCompatActivity implements RVNameWi
         adapter.notifyItemRangeChanged(position+1, adapter.getItemCount());
     }
 
+    @Override
+    public int getSquare(int position) {
+        return position*position;
+    }
+
 }
