@@ -10,7 +10,7 @@ import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerViewWithGlide extends AppCompatActivity implements RVNameWithImageAdapter.GoToFullAnimalDetails{
@@ -39,7 +39,16 @@ public class RecyclerViewWithGlide extends AppCompatActivity implements RVNameWi
 
         nameWithImageRV.setAdapter(adapter);
 
-        nameWithImageRV.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        /**
+         * 1. LinearLayout - Vertical
+         * 2. LinearLayout - Horizontal
+         * 3. GridLayout - Vertical
+         * 4. GridLayout - Horizontal
+         * 5. StaggeredGridLayout - Vertical
+         * 6. StaggeredGridLayout - Horizontal
+         */
+
+        nameWithImageRV.setLayoutManager(new GridLayoutManager(this,  2));
 
         nameWithImageRV.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
@@ -84,3 +93,10 @@ public class RecyclerViewWithGlide extends AppCompatActivity implements RVNameWi
     }
 
 }
+
+/**
+ * GridLayoutManager (Context context,
+ *                 int spanCount,
+ *                 int orientation,
+ *                 boolean reverseLayout)
+ */
